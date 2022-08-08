@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  deribit_producer:
+    build: .
+    environment:
+      - CLIENT_ID_DERIBIT=${CLIENT_ID_DERIBIT}
+      - CLIENT_SECRET_DERIBIT=${CLIENT_SECRET_DERIBIT}
+    networks:
+      - kafka_network
+
+networks:
+  kafka_network:
+    name: kafka_network

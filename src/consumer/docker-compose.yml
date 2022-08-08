@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  deribit_consumer:
+    build: .
+    networks:
+      - kafka_network
+      
+networks:
+  kafka_network:
+    name: kafka_network
