@@ -10,9 +10,10 @@ import secrets
 import sys
 from argparse import ArgumentParser
 from threading import Thread
-from utils import get_api_keys
+
 # get api keys
-client_id, client_secret = get_api_keys("CLIENT_ID_DERIBIT", "CLIENT_SECRET_DERIBIT")
+client_id = os.environ["CLIENT_ID_DERIBIT"]
+client_secret = os.environ["CLIENT_SECRET_DERIBIT"]
 
 class DeribitClient(Thread, WebSocketApp):
     def __init__(self, client_id, client_secret, testnet=False) -> None:
