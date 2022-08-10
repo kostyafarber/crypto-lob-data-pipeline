@@ -25,14 +25,14 @@
   <p align="center">
     A real-time streaming data pipeline built using Kafka and Docker. Consumes Bitcoin data from Deribit's API v2.1.1 and transforms limit order book market data to net order flow imbalance and the mid-price.
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/kostyafarber/crypto-lob-data-pipeline"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://github.com/kostyafarber/crypto-lob-data-pipeline">View Demo</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="https://github.com/kostyafarber/crypto-lob-data-pipeline/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://github.com/kostyafarber/crypto-lob-data-pipeline/issues">Request Feature</a>
   </p>
 </div>
 
@@ -71,16 +71,9 @@
 
 [![Product Name Screen Shot][project-image]](https://example.com)
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+Intially this project was intended as a starting point to build an algorithmic trading system. I decided to explore HFT (High Frequency Trading) and wanted to use Market Microstructure variables to inform my trading strategy. I wanted to use perptual cryptocurrency instruments and use order flow imbalance.
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
+I however instead to the chance to change this into a fun project to practise and learn Docker and Kafka. What ultimately came of it was a simple real-time streaming data pipeline.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -88,64 +81,62 @@ Use the `BLANK_README.md` to get started.
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* [Python]()
+* [Apache Kafka]()
+* [Docker]()
+* [Docker Compose]()
+* [Deribit API V2.1.1]()
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- GETTING STARTED -->
-## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+_This app was built using Docker. This solution assumes you have Docker installed on your machine_
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Make sure you have API keys from Deribit and store them as `CLIENT_ID_DERIBIT` and `CLIENT_SECRET_DERIBIT` environment variables on your machine
+
+1. Clone the repo
+
    ```sh
    git clone https://github.com/your_username_/Project-Name.git
    ```
-3. Install NPM packages
+2. Run the kafka and zookeeper container
+
    ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+   cd src/kafka
+   docker-compose -f 'docker-compose.yml' up -d
    ```
 
+Run the producer container
+
+3. ```sh
+    cd src/producer
+    docker-compose -f 'docker-compose.yml' up 
+    ```
+
+Finally run the consumer container
+  ```sh
+  cd src/consumer
+  docker-compose up -f `docker-compose.yml` up
+  ```
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+What you should see is output that looks something like this:
+
+![demo gif][demo-gif]
+
+One the left you have the raw JSON being published to the kafka broker and on the right the JSON is being transformed with the order flow imbalance and mid-price being printed to the console.
 
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## Architecture
+The pipeline was built with the microservices principles in mind. Kafka, the Producer and Consumer are all in their own seperate docker containers and have no knowledge of each other apart from being on the same bridge network I defined in the `docker-compose.yml` files.
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
+![architecture diagram][architecture-diagram]
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -153,19 +144,13 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
+- [] Add another script to make the consumer portion into a producer.
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+- [] Add docker youtube video in acknowledgments.
+
+See the [open issues](https://github.com/kostyafarber/crypto-lob-data-pipeline/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -197,9 +182,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Kostya Farber - kostya.farber@gmail.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/kostyafarber/crypto-lob-data-pipeline](https://github.com/kostyafarber/crypto-lob-data-pipeline)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -210,14 +195,7 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 
 Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
 
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
+* []()
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -226,6 +204,9 @@ Use this space to list resources you find helpful and would like to give credit 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [project-image]: images/kafka.png
+[demo-gif]: images/kafka-demo.gif
+[architecture-diagram]: images/kafka-crypto-pipeline.png
+
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
 [contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
