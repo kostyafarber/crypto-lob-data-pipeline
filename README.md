@@ -73,7 +73,7 @@
 
 Intially this project was intended as a starting point to build an algorithmic trading system. I decided to explore HFT (High Frequency Trading) and wanted to use Market Microstructure variables to inform my trading strategy. I wanted to use perptual cryptocurrency instruments and use order flow imbalance.
 
-I however instead to the chance to change this into a fun project to practise and learn Docker and Kafka. What ultimately came of it was a simple real-time streaming data pipeline.
+I however, instead tok the chance to change this into a fun project to practise and learn Docker and Kafka. What ultimately came of it was a simple real-time streaming data pipeline.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
