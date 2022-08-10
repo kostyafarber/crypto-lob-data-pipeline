@@ -100,7 +100,7 @@ _This app was built using Docker. This solution assumes you have Docker installe
 1. Clone the repo
 
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone git@github.com:kostyafarber/crypto-lob-data-pipeline.git
    ```
 2. Run the kafka and zookeeper container
 
