@@ -75,17 +75,20 @@ Intially this project was intended as a starting point to build an algorithmic t
 
 I however, instead tok the chance to change this into a fun project to practise and learn Docker and Kafka. What ultimately came of it was a simple real-time streaming data pipeline.
 
+Please check out my [website](https://kostyafarber.github.io/projects/crpyto-perpetual-futures-kafka-streaming) for more info!
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
 ### Built With
 
-* [Python]()
-* [Apache Kafka]()
-* [Docker]()
-* [Docker Compose]()
-* [Deribit API V2.1.1]()
+* [Python](https://www.python.org/)
+* [Pandas](https://pandas.pydata.org/)
+* [Apache Kafka](https://kafka.apache.org/)
+* [Docker](https://www.docker.com/)
+* [Docker Compose](https://www.docker.com/)
+* [Deribit API V2.1.1](https://docs.deribit.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -128,7 +131,7 @@ What you should see is output that looks something like this:
 
 ![demo gif][demo-gif]
 
-One the left you have the raw JSON being published to the kafka broker and on the right the JSON is being transformed with the order flow imbalance and mid-price being printed to the console.
+On the left is raw JSON being published to the kafka broker and on the right the JSON is being transformed with the order flow imbalance and mid-price being printed to the console.
 
 
 
@@ -184,7 +187,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Kostya Farber - kostya.farber@gmail.com
 
-Project Link: [https://github.com/kostyafarber/crypto-lob-data-pipeline](https://github.com/kostyafarber/crypto-lob-data-pipeline)
+Project Link: [https://kostyafarber.github.io/projects/crpyto-perpetual-futures-kafka-streaming](https://kostyafarber.github.io/projects/crpyto-perpetual-futures-kafka-streaming)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
